@@ -1,17 +1,16 @@
 "use client";
 import { useState } from "react";
-import { ParsePostResponse } from "@/types/ParsePostResponse";
-import ParseTreeStats from "@/types/ParseTreeStats";
+import Spell from "@/types/game/Spell";
+
+import PosTable from "@/components/PosTable";
+import PlayerCast from "@/components/PlayerCast";
 
 export default function Home() {
-    const defaultParse: ParsePostResponse = {
-        parseTree: {},
-        constituencyParse: ["This is where the tree will show up!"],
-        parseTreeStats: new ParseTreeStats(),
-    };
     const [value, setValue] = useState("");
 
-    const [tree, setTree] = useState(defaultParse);
+    const [tree, setTree] = useState(["The tree appears here!"]);
+    const [posTable, setPosTable] = useState(null);
+    const [playerCast, setPlayerCast] = useState<Spell | null>(null);
 
     async function onEnter(e: React.KeyboardEvent<HTMLInputElement>) {
         if (e.key === "Enter") {
@@ -22,13 +21,13 @@ export default function Home() {
                 body: JSON.stringify({ text: value }),
             });
             const data = await res.json();
-            console.log(data);
-            const arr = JSON.stringify(data);
-            setTree(data);
+            setPosTable(data.parseTreeStats);
+            setTree(data.constituencyParse);
+            setPlayerCast(data.playerCast);
         }
     }
     return (
-        <div className="pt-80 flex-col text-center">
+        <div className="pt-60 flex-col text-center">
             <h1>This is where you type!</h1>
             <input
                 className="border max-h-30 min-h-30 max-w-3/5 min-w-3/5"
@@ -37,9 +36,19 @@ export default function Home() {
                 onChange={(e) => setValue(e.target.value)}
                 onKeyDown={onEnter}
             ></input>
-            {tree.constituencyParse.map((line, index) => (
-                <p key={index}>{line}</p>
-            ))}
+            <div className="flex justify-evenly items-center text-center pt-3">
+                <div className="w-2/10 ">
+                    <PlayerCast playerCast={playerCast}></PlayerCast>
+                </div>
+                <div className="flex-col ">
+                    {tree.map((line, index) => (
+                        <p key={index}>{line}</p>
+                    ))}
+                </div>
+                <div className="">
+                    <PosTable stats={posTable}></PosTable>
+                </div>
+            </div>
         </div>
     );
 }
