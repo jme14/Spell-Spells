@@ -1,4 +1,4 @@
-import { ParseTree } from "@/types/ParseTree";
+import { ParseTree } from "@/types/api/ParseTree";
 
 export function getTag(treeString: string): string {
     const match = treeString.match(/\(([^ ]*)/);
