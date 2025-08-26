@@ -1,30 +1,42 @@
-export const SYNTAX_TAGS = [
-    "ADJP", // Adjective Phrase
-    "ADVP", // Adverb Phrase
-    "CONJP", // Conjunction Phrase
-    "FRAG", // Fragment
-    "INTJ", // Interjection
-    "LST", // List marker
-    "NAC", // Not A Constituent
-    "NP", // Noun Phrase
-    "NX", // Used within NP for complex NPs
-    "PP", // Prepositional Phrase
-    "PRN", // Parenthetical
-    "PRT", // Particle
-    "QP", // Quantifier Phrase
-    "RRC", // Reduced Relative Clause
-    "S", // Simple Declarative Clause
-    "SBAR", // Subordinate Clause
-    "SBARQ", // Direct Question introduced by wh-word/phrase
-    "SINV", // Inverted Declarative Sentence
-    "SQ", // Inverted Yes/No Question
-    "UCP", // Unlike Coordinated Phrase
-    "VP", // Verb Phrase
-    "WHADJP", // Wh-adjective Phrase
-    "WHADVP", // Wh-adverb Phrase
-    "WHNP", // Wh-noun Phrase
-    "WHPP", // Wh-prepositional Phrase
-    "X", // Unknown / miscellaneous
-];
+export function forEachSyntaxTag(func: (tag: SyntaxTag) => void) {
+    Object.values(SyntaxTag)
+        .filter((tag) => typeof tag === "number")
+        .forEach((tag) => func(tag));
+}
 
-export type SyntaxTag = (typeof SYNTAX_TAGS)[number];
+export enum SyntaxTag {
+    // Phrase-level tags
+    ADJP = "ADJP", // Adjective Phrase
+    ADVP = "ADVP", // Adverb Phrase
+    CONJP = "CONJP", // Conjunction Phrase
+    NAC = "NAC", // Not A Constituent
+    NP = "NP", // Noun Phrase
+    PP = "PP", // Prepositional Phrase
+    PRT = "PRT", // Particle
+    QP = "QP", // Quantifier Phrase
+    RRC = "RRC", // Reduced Relative Clause
+    UCP = "UCP", // Unlike Coordinated Phrase
+    VP = "VP", // Verb Phrase
+    WHADJP = "WHADJP", // Wh-adjective Phrase
+    WHADVP = "WHADVP", // Wh-adverb Phrase
+    WHNP = "WHNP", // Wh-noun Phrase
+    WHPP = "WHPP", // Wh-prepositional Phrase
+
+    // Clause-level tags
+    S = "S", // Simple Declarative Clause
+    SBAR = "SBAR", // Subordinate Clause
+    SBARQ = "SBARQ", // Direct Question introduced by wh-word/phrase
+    SINV = "SINV", // Inverted Declarative Sentence
+    SQ = "SQ", // Inverted Yes/No Question
+
+    // NP-internal / minor phrase tags
+    NX = "NX", // Noun Phrase internal structure
+    NML = "NML", // Nominal Modifier
+    PRN = "PRN", // Parenthetical inside phrases
+    LST = "LST", // List marker in NPs
+    FRAG = "FRAG", // Fragment inside phrases
+
+    // Misc / rare
+    INTJ = "INTJ", // Interjection as standalone
+    X = "X", // Unknown / miscellaneous elements
+}

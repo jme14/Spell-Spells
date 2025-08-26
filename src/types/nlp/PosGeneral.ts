@@ -1,22 +1,20 @@
-export const POS_GENERAL = [
+export enum PosGeneral {
     // mains
-    "Noun",
-    "Adjective",
-    "Verb",
-    "Adverb",
-    "Determiner",
-    "Conjunction",
+    Noun = "Noun",
+    Adjective = "Adjective",
+    Verb = "Verb",
+    Adverb = "Adverb",
+    Determiner = "Determiner",
+    Conjunction = "Conjunction",
 
     // special
-    "Number",
-    "Existential",
-    "Modal",
-    "Possessive",
-    "Particle",
-    "Infinitive",
-    "Interjection",
+    Number = "Number",
+    Existential = "Existential",
+    Modal = "Modal",
+    Possessive = "Possessive",
+    Particle = "Particle",
+    Infinitive = "Infinitive",
+    Interjection = "Interjection",
 
-    "Invalid", //foreign maps to this, for example
-];
-
-export type PosGeneral = (typeof POS_GENERAL)[number];
+    Invalid = "Invalid", //foreign maps to this, for example
+}

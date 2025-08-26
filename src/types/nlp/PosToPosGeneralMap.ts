@@ -1,54 +1,53 @@
 import { PosTag } from "./PosTag";
 import { PosGeneral } from "./PosGeneral";
 export const POS_TO_POS_GENERAL: Record<PosTag, PosGeneral> = {
-    // Nouns
-    NN: "Noun",
-    NNS: "Noun",
-    NNP: "Noun",
-    NNPS: "Noun",
-    PRP: "Noun",
-    PRP$: "Noun",
-    WP: "Noun",
-    WP$: "Noun",
+    [PosTag.NN]: PosGeneral.Noun,
+    [PosTag.NNS]: PosGeneral.Noun,
+    [PosTag.NNP]: PosGeneral.Noun,
+    [PosTag.NNPS]: PosGeneral.Noun,
+    [PosTag.PRP]: PosGeneral.Noun,
+    [PosTag.PRP$]: PosGeneral.Noun,
+    [PosTag.WP]: PosGeneral.Noun,
+    [PosTag.WP$]: PosGeneral.Noun,
 
     // Verbs
-    VB: "Verb",
-    VBD: "Verb",
-    VBG: "Verb",
-    VBN: "Verb",
-    VBP: "Verb",
-    VBZ: "Verb",
+    [PosTag.VB]: PosGeneral.Verb,
+    [PosTag.VBD]: PosGeneral.Verb,
+    [PosTag.VBG]: PosGeneral.Verb,
+    [PosTag.VBN]: PosGeneral.Verb,
+    [PosTag.VBP]: PosGeneral.Verb,
+    [PosTag.VBZ]: PosGeneral.Verb,
 
     // Adjectives
-    JJ: "Adjective",
-    JJR: "Adjective",
-    JJS: "Adjective",
+    [PosTag.JJ]: PosGeneral.Adjective,
+    [PosTag.JJR]: PosGeneral.Adjective,
+    [PosTag.JJS]: PosGeneral.Adjective,
 
     // Adverbs
-    RB: "Adverb",
-    RBR: "Adverb",
-    RBS: "Adverb",
-    WRB: "Adverb",
+    [PosTag.RB]: PosGeneral.Adverb,
+    [PosTag.RBR]: PosGeneral.Adverb,
+    [PosTag.RBS]: PosGeneral.Adverb,
+    [PosTag.WRB]: PosGeneral.Adverb,
 
     // Determiners
-    DT: "Determiner",
-    PDT: "Determiner",
-    WDT: "Determiner",
+    [PosTag.DT]: PosGeneral.Determiner,
+    [PosTag.PDT]: PosGeneral.Determiner,
+    [PosTag.WDT]: PosGeneral.Determiner,
 
     // Conjunctions
-    CC: "Conjunction",
-    IN: "Conjunction",
+    [PosTag.CC]: PosGeneral.Conjunction,
+    [PosTag.IN]: PosGeneral.Conjunction,
 
     // Others
-    CD: "Number",
-    EX: "Existential",
-    MD: "Modal",
-    POS: "Possessive",
-    RP: "Particle",
-    TO: "Infinitive",
-    UH: "Interjection",
+    [PosTag.CD]: PosGeneral.Number,
+    [PosTag.EX]: PosGeneral.Existential,
+    [PosTag.MD]: PosGeneral.Modal,
+    [PosTag.POS]: PosGeneral.Possessive,
+    [PosTag.RP]: PosGeneral.Particle,
+    [PosTag.TO]: PosGeneral.Infinitive,
+    [PosTag.UH]: PosGeneral.Interjection,
 
-    SYM: "Invalid", // symbol
-    FW: "Invalid", // foreign
-    LS: "Invalid", // list item
+    [PosTag.SYM]: PosGeneral.Invalid, // symbol
+    [PosTag.FW]: PosGeneral.Invalid, // foreign
+    [PosTag.LS]: PosGeneral.Invalid, // list item
 };

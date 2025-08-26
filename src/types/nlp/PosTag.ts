@@ -1,41 +1,39 @@
 // Penn Treebank POS Tags
-export const POS_TAGS = [
-    "CC", // Coordinating conjunction
-    "CD", // Cardinal number
-    "DT", // Determiner
-    "EX", // Existential there
-    "FW", // Foreign word
-    "IN", // Preposition / subordinating conjunction
-    "JJ", // Adjective
-    "JJR", // Adjective, comparative
-    "JJS", // Adjective, superlative
-    "LS", // List item marker
-    "MD", // Modal
-    "NN", // Noun, singular or mass
-    "NNS", // Noun, plural
-    "NNP", // Proper noun, singular
-    "NNPS", // Proper noun, plural
-    "PDT", // Predeterminer
-    "POS", // Possessive ending
-    "PRP", // Personal pronoun
-    "PRP$", // Possessive pronoun
-    "RB", // Adverb
-    "RBR", // Adverb, comparative
-    "RBS", // Adverb, superlative
-    "RP", // Particle
-    "SYM", // Symbol
-    "TO", // "to"
-    "UH", // Interjection
-    "VB", // Verb, base form
-    "VBD", // Verb, past tense
-    "VBG", // Verb, gerund/present participle
-    "VBN", // Verb, past participle
-    "VBP", // Verb, non-3rd person singular present
-    "VBZ", // Verb, 3rd person singular present
-    "WDT", // Wh-determiner
-    "WP", // Wh-pronoun
-    "WP$", // Possessive wh-pronoun
-    "WRB", // Wh-adverb
-];
-
-export type PosTag = (typeof POS_TAGS)[number];
+export enum PosTag {
+    CC = "CC", // Coordinating conjunction
+    CD = "CD", // Cardinal number
+    DT = "DT", // Determiner
+    EX = "EX", // Existential there
+    FW = "FW", // Foreign word
+    IN = "IN", // Preposition / subordinating conjunction
+    JJ = "JJ", // Adjective
+    JJR = "JJR", // Adjective, comparative
+    JJS = "JJS", // Adjective, superlative
+    LS = "LS", // List item marker
+    MD = "MD", // Modal
+    NN = "NN", // Noun, singular or mass
+    NNS = "NNS", // Noun, plural
+    NNP = "NNP", // Proper noun, singular
+    NNPS = "NNPS", // Proper noun, plural
+    PDT = "PDT", // Predeterminer
+    POS = "POS", // Possessive ending
+    PRP = "PRP", // Personal pronoun
+    PRP$ = "PRP$", // Possessive pronoun
+    RB = "RB", // Adverb
+    RBR = "RBR", // Adverb, comparative
+    RBS = "RBS", // Adverb, superlative
+    RP = "RP", // Particle
+    SYM = "SYM", // Symbol
+    TO = "TO", // to
+    UH = "UH", // Interjection
+    VB = "VB", // Verb, base form
+    VBD = "VBD", // Verb, past tense
+    VBG = "VBG", // Verb, gerund/present participle
+    VBN = "VBN", // Verb, past participle
+    VBP = "VBP", // Verb, non-3rd person singular present
+    VBZ = "VBZ", // Verb, 3rd person singular present
+    WDT = "WDT", // Wh-determiner
+    WP = "WP", // Wh-pronoun
+    WP$ = "WP$", // Possessive wh-pronoun
+    WRB = "WRB", // Wh-adverb
+}
