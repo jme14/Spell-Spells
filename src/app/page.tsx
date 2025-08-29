@@ -2,51 +2,86 @@
 import { useState } from "react";
 import Spell from "@/types/game/Spell";
 
-import PosTable from "@/components/PosTable";
-import PlayerCast from "@/components/PlayerCast";
+import PosTable from "@/components/board/pos-table/PosTable";
+import PlayerCast from "@/components/board/floor/PlayerCast";
+import { CastBox } from "@/components/board/CastBox";
+import CastFloor from "@/components/board/floor/CastFloor";
+import HealthOrb from "@/components/board/HealthOrb";
+import UsedWords from "@/components/board/UsedWords";
+import ConstituencyTreeLeaf from "@/components/board/tree/ConstituencyTree";
+import LetterBank from "@/components/board/LetterBank";
 
 export default function Home() {
-    const [value, setValue] = useState("");
-
-    const [tree, setTree] = useState(["The tree appears here!"]);
+    const [sentence, setSentence] = useState("This is where you type!");
+    const [tree, setTree] = useState({ None: "None" });
     const [posTable, setPosTable] = useState(null);
     const [playerCast, setPlayerCast] = useState<Spell | null>(null);
 
-    async function onEnter(e: React.KeyboardEvent<HTMLInputElement>) {
-        if (e.key === "Enter") {
-            e.preventDefault();
-            const res = await fetch("/api/parse", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ text: value }),
-            });
-            const data = await res.json();
-            setPosTable(data.parseTreeStats);
-            setTree(data.constituencyParse);
-            setPlayerCast(data.playerCast);
-        }
+    async function onSentenceSubmit(sent: string) {
+        setSentence(sent);
+        const res = await fetch("/api/parse", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ text: sent }),
+        });
+        const data = await res.json();
+        setPosTable(data.parseTreeStats);
+        setTree(data.parseTree);
+        setPlayerCast(data.playerCast);
     }
     return (
-        <div className="pt-60 flex-col text-center">
-            <h1>This is where you type!</h1>
-            <input
-                className="border max-h-30 min-h-30 max-w-3/5 min-w-3/5"
-                type="text"
-                value={value}
-                onChange={(e) => setValue(e.target.value)}
-                onKeyDown={onEnter}
-            ></input>
-            <div className="flex justify-evenly items-center text-center pt-3">
-                <div className="w-2/10 ">
-                    <PlayerCast playerCast={playerCast}></PlayerCast>
-                </div>
-                <div className="flex-col ">
-                    {tree.map((line, index) => (
-                        <p key={index}>{line}</p>
-                    ))}
-                </div>
-                <div className="">
-                    <PosTable stats={posTable}></PosTable>
+        <div className={`flex justify-center items-center`}>
+            <div className={`flex justify-center items-center w-3/4 pt-20`}>
+                <div
+                    className={`grid grid-cols-16 text-center  aspect-[16/9] w-full`}
+                >
+                    <div
+                        id="col1"
+                        className={`col-span-4 grid grid-rows-[5fr_2fr_2fr] min-h-[750px]`}
+                    >
+                        <PosTable
+                            className={`min-h-[100px]`}
+                            stats={posTable}
+                        ></PosTable>
+                        <UsedWords className={`min-h-[100px]`} />
+                        <LetterBank className={`min-h-[100px]`} />
+                    </div>
+                    <div
+                        id="col2"
+                        className={`col-span-8 grid grid-rows-[1fr_7fr_1fr] min-h-[750px]`}
+                    >
+                        <div>{sentence}</div>
+                        <CastFloor className={`border min-h-[100px]`}>
+                            <PlayerCast
+                                className=""
+                                playerCast={playerCast}
+                            ></PlayerCast>
+                            <PlayerCast
+                                className=""
+                                playerCast={playerCast}
+                            ></PlayerCast>
+                            <PlayerCast
+                                className=""
+                                playerCast={playerCast}
+                            ></PlayerCast>
+                            <PlayerCast
+                                className=""
+                                playerCast={playerCast}
+                            ></PlayerCast>
+                        </CastFloor>
+                        <CastBox
+                            className={`min-h-[100px]`}
+                            onSentenceSubmit={onSentenceSubmit}
+                        />
+                    </div>
+                    <div
+                        id="col3"
+                        className={`col-span-4 grid grid-rows-[1fr_7fr_1fr] min-h-[750px]`}
+                    >
+                        <HealthOrb className={``} health={9} />
+                        <ConstituencyTreeLeaf pt={tree} />
+                        <HealthOrb className={``} health={9} />
+                    </div>
                 </div>
             </div>
         </div>
