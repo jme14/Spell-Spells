@@ -19,8 +19,15 @@ export default function Waiting() {
     const router = useRouter();
 
     useEffect(() => {
-        socket.emit("waiting");
-    });
+        if (socket.connected) {
+            socket.emit("waiting");
+        } else {
+            socket.once("connect", () => {
+                socket.emit("waiting");
+            });
+        }
+    }, []);
+
     useEffect(() => {
         const onMatchFound = ({ gameId, isPlayerOne }: MatchFoundResponse) => {
             dispatch(setGameId(gameId));
@@ -33,7 +40,7 @@ export default function Waiting() {
                 dispatch(flipTurn());
             }
 
-            router.push("/");
+            router.push(`/game/${gameId}`);
         };
         socket.on("matchFound", onMatchFound);
         return () => {
