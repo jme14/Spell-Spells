@@ -3,8 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { socket } from "@/lib/socket";
 
-import { ParseTree } from "@/types/api/ParseTree";
-import ParseTreeStats from "@/types/nlp/ParseTreeStats";
+import { ParseTree, ParseTreeStats } from "spell-spells-schema";
 
 import PosTable from "@/components/board/pos-table/PosTable";
 import PlayerCast from "@/components/board/floor/PlayerCast";

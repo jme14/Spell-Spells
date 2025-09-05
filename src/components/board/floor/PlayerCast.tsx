@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Spell from "@/types/game/Spell";
+import { Spell } from "spell-spells-schema";
 
 interface PlayerCastProps {
     className: string;

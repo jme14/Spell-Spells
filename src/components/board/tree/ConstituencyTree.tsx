@@ -1,5 +1,5 @@
-import { ParseTree } from "@/types/api/ParseTree";
 import VerticalText from "@/components/general/VerticalText";
+import { ParseTree } from "spell-spells-schema";
 interface ConstituencyTreeLeafProps {
     pt: ParseTree;
 }

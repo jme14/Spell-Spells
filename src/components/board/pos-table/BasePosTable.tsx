@@ -1,4 +1,4 @@
-import { PosGeneral } from "@/types/nlp/PosGeneral";
+import { PosGeneral } from "spell-spells-schema";
 
 interface BasePosTableProps {
     className: string;

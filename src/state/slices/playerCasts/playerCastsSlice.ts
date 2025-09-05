@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import Spell from "@/types/game/Spell";
+import { Spell } from "spell-spells-schema";
 
 export interface PlayerCastsState {
     value: {

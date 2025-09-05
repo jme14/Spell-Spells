@@ -1,9 +1,8 @@
-import ParseTreeStats from "@/types/nlp/ParseTreeStats";
 import BasePosTable from "@/components/board/pos-table/BasePosTable";
 import SupportPosTable from "@/components/board/pos-table/SupportPosTable";
 import MysteryPosTable from "@/components/board/pos-table/MysteryPosTable";
-import { PosGeneral } from "@/types/nlp/PosGeneral";
-import TagStats from "@/types/nlp/TagStats";
+import { PosGeneral, ParseTreeStats, TagStats } from "spell-spells-schema";
+
 interface PosTableProps {
     className: string;
     stats: ParseTreeStats | null;
@@ -24,6 +23,7 @@ export default function PosTable({
     ],
     supportPos = [PosGeneral.Determiner, PosGeneral.Conjunction],
     mysteryPos = [PosGeneral.Invalid],
+}: /*
     hidden = [
         PosGeneral.Number,
         PosGeneral.Existential,
@@ -33,7 +33,8 @@ export default function PosTable({
         PosGeneral.Infinitive,
         PosGeneral.Interjection,
     ],
-}: PosTableProps) {
+    */
+PosTableProps) {
     if (!stats) {
         return <div className={`${className}`}>Your table appears here!</div>;
     }
@@ -77,12 +78,14 @@ export default function PosTable({
         ([pos, { amount }]) => (mysteryRecord[pos] = amount)
     );
 
+    /*
     const hiddenEntries = entries.filter(
         (entry) => entry[0] in PosGeneral && hidden.includes(entry[0])
     );
     const hiddenEntriesCount = hiddenEntries
         .map((entry) => entry[1].amount)
         .reduce((acc, cur) => acc + cur, 0);
+    */
 
     return (
         <div className={`${className} flex flex-col justify-center`}>
