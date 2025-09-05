@@ -4,7 +4,6 @@ interface VerticalTextProps {
 }
 export default function VerticalText({ className, text }: VerticalTextProps) {
     const charArray = text.split("");
-    console.log(charArray);
     return (
         <div
             className={`flex flex-col justify-center min-w-[50px] ${className}`}
