@@ -8,7 +8,7 @@ interface BasePosTableProps {
 export default function BasePosTable({ className, counts }: BasePosTableProps) {
     const entries = Object.entries(counts);
     return (
-        <div className={`grid grid-cols-2 h-full ${className}`}>
+        <div className={`${className}`}>
             {entries.map(([pos, amount]) => (
                 <div
                     className="flex justify-center items-center border "

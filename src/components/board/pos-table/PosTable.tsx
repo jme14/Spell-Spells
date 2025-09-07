@@ -88,10 +88,19 @@ PosTableProps) {
     */
 
     return (
-        <div className={`${className} flex flex-col justify-center`}>
-            <BasePosTable className="" counts={baseRecord}></BasePosTable>
-            <SupportPosTable counts={supportRecord}></SupportPosTable>
-            <MysteryPosTable counts={mysteryRecord}></MysteryPosTable>
+        <div className={`${className} grid grid-rows-7 h-full`}>
+            <BasePosTable
+                className="contents"
+                counts={baseRecord}
+            ></BasePosTable>
+            <SupportPosTable
+                className="contents"
+                counts={supportRecord}
+            ></SupportPosTable>
+            <MysteryPosTable
+                className="contents"
+                counts={mysteryRecord}
+            ></MysteryPosTable>
         </div>
     );
 }

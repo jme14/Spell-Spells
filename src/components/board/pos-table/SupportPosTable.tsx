@@ -9,7 +9,7 @@ export default function SupportPosTable({
 }: SupportPosProps) {
     const entries = Object.entries(counts);
     return (
-        <div className={`grid grid-cols-2 h-1/4 ${className}`}>
+        <div className={`${className}`}>
             {entries.map(([pos, amount]) => (
                 <div
                     className="flex border justify-center items-center"
