@@ -3,9 +3,14 @@ import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { socket } from "@/lib/socket";
 
-import { ParseTree, ParseTreeStats } from "spell-spells-schema";
+import {
+    ParseTree,
+    ParseTreeStats,
+    ParsePostResponse,
+} from "spell-spells-schema";
 
 import PosTable from "@/components/board/pos-table/PosTable";
+import SpellBook from "@/components/board/spellBook/SpellBook";
 import PlayerCast from "@/components/board/floor/PlayerCast";
 import { CastBox } from "@/components/board/CastBox";
 import CastFloor from "@/components/board/floor/CastFloor";
@@ -13,7 +18,6 @@ import HealthOrb from "@/components/board/HealthOrb";
 import UsedWords from "@/components/board/UsedWords";
 import ConstituencyTreeLeaf from "@/components/board/tree/ConstituencyTree";
 import LetterBank from "@/components/board/LetterBank";
-import { ParsePostResponse } from "@/types/api/ParsePostResponse";
 import { useAppDispatch, useAppSelector } from "@/hooks/hooks";
 
 import {
@@ -112,10 +116,13 @@ export default function Home() {
                         id="col1"
                         className={`col-span-4 grid grid-rows-[5fr_2fr_2fr] min-h-[750px]`}
                     >
-                        <PosTable
-                            className={`min-h-[100px]`}
-                            stats={posTable}
-                        ></PosTable>
+                        <div className={`flex min-h-[100px]`}>
+                            <SpellBook />
+                            <PosTable
+                                className={`min-h-[100px] flex-1`}
+                                stats={posTable}
+                            ></PosTable>
+                        </div>
                         <UsedWords className={`min-h-[100px]`} />
                         <LetterBank className={`min-h-[100px]`} />
                     </div>
