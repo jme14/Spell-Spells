@@ -7,7 +7,6 @@ export default function PlayButton({ className }: PlayButtonProps) {
         <Link href="/waiting">
             <button
                 className={`rounded bg-blue-600 text-white hover:bg-blue-700 ${className}`}
-                onClick={() => console.log("Clicked!")}
             >
                 Play
             </button>
