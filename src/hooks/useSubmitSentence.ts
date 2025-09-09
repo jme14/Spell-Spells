@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-import { socket } from "@/lib/socket";
+import { getSocket } from "@/lib/socket";
 import { useAppSelector } from "@/hooks/hooks";
 import { selectGameState } from "@/state/selectors/selectGameState";
 import { GameStateClient } from "spell-spells-schema";
@@ -29,7 +29,7 @@ export function useSubmitSentence() {
             usedWords: gameState.usedWords.value,
             letterBank: gameState.letterBank.value,
         };
-        console.log("Yup, now I'm emitting");
+        const socket = getSocket();
         socket.emit("sentenceSubmit", gameStateMessage);
 
         // console.log("I should have just emitted an event...");

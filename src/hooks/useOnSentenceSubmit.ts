@@ -7,7 +7,7 @@ import {
     GameStateServer,
 } from "spell-spells-schema";
 
-import { socket } from "@/lib/socket";
+import { getSocket } from "@/lib/socket";
 import { useAppDispatch } from "@/hooks/hooks";
 import {
     newSpellSlotA,
@@ -74,6 +74,7 @@ export function useOnSentenceSubmit() {
             dispatch({ type: "RESET" });
             push("/waiting");
         };
+        const socket = getSocket();
         socket.on("sentenceSubmitResponse", onSentenceSubmitResponse);
         socket.on("opponentDisconnect", onOpponentDisconnect);
         return () => {
