@@ -1,13 +1,13 @@
 "use client";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { socket } from "@/lib/socket";
 import { useAppDispatch } from "@/hooks/hooks";
 import {
     setGameId,
     markPlayer2,
     flipTurn,
 } from "@/state/slices/player/playerSlice";
+import { getSocket } from "@/lib/socket";
 
 interface MatchFoundResponse {
     gameId: string;
@@ -19,16 +19,8 @@ export default function Waiting() {
     const router = useRouter();
 
     useEffect(() => {
-        if (socket.connected) {
-            socket.emit("waiting");
-        } else {
-            socket.once("connect", () => {
-                socket.emit("waiting");
-            });
-        }
-    }, []);
-
-    useEffect(() => {
+        const socket = getSocket();
+        socket.emit("waiting");
         const onMatchFound = ({ gameId, isPlayerOne }: MatchFoundResponse) => {
             dispatch(setGameId(gameId));
 
