@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAppSelector, useAppDispatch } from "@/hooks/hooks";
-import { newSentence } from "@/state/slices/sentence/sentenceSlice";
+import { submitSentence } from "@/state/slices/sentence/sentenceSlice";
 
 interface CastBoxProps {
     className: string;
@@ -8,11 +8,11 @@ interface CastBoxProps {
 export function CastBox({ className }: CastBoxProps) {
     const dispatch = useAppDispatch();
     const { myTurn } = useAppSelector((state) => state.player.value);
-    const [sentence, setSentence] = useState("");
+    const [sentenceLocal, setSentenceLocal] = useState("");
 
     function onEnterKey(e: React.KeyboardEvent<HTMLInputElement>) {
         if (e.key === "Enter" && myTurn) {
-            dispatch(newSentence(sentence));
+            dispatch(submitSentence(sentenceLocal));
         }
     }
 
@@ -20,8 +20,8 @@ export function CastBox({ className }: CastBoxProps) {
         <input
             className={`border  ${className}`}
             type="text"
-            value={sentence}
-            onChange={(e) => setSentence(e.target.value)}
+            value={sentenceLocal}
+            onChange={(e) => setSentenceLocal(e.target.value)}
             onKeyDown={onEnterKey}
         />
     );
