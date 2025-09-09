@@ -1,23 +1,29 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface SentenceState {
-    value: string;
+    sentenceSent: string;
+    sentenceRecieved: string;
 }
 
 const initialState: SentenceState = {
-    value: "Type a sentence to cast a spell.",
+    sentenceSent: "Type a sentence to cast a spell.",
+    sentenceRecieved: "Type a sentence to cast a spell.",
 };
 
 export const sentenceSlice = createSlice({
     name: "sentence",
     initialState,
     reducers: {
-        newSentence: (state, action: PayloadAction<string>) => {
-            state.value = action.payload;
+        submitSentence: (state, action: PayloadAction<string>) => {
+            state.sentenceSent = action.payload;
+        },
+        recieveSentence: (state, action: PayloadAction<string>) => {
+            state.sentenceRecieved = action.payload;
+            state.sentenceSent = action.payload;
         },
     },
 });
 
-export const { newSentence } = sentenceSlice.actions;
+export const { submitSentence, recieveSentence } = sentenceSlice.actions;
 
 export default sentenceSlice.reducer;
