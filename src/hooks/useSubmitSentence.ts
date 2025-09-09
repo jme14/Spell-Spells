@@ -28,6 +28,7 @@ export function useSubmitSentence() {
             playerTwoHealth: gameState.playerHealths.value.p2Health,
             usedWords: gameState.usedWords.value,
             letterBank: gameState.letterBank.value,
+            gameId: gameState.player.value.gameId,
         };
         const socket = getSocket();
         socket.emit("sentenceSubmit", gameStateMessage);
